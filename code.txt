@@ -1,4 +1,3 @@
-let a = `
 $.get("https://ipinfo.io", function(response) {
           $ip = response.ip;
         }, "json");
@@ -16,4 +15,3 @@ xhr.onreadystatechange = function () {
 let data = '{"ip": "' + ip +'","name": "Phan Thế Minh Châu"}';
 console.log(data)
 xhr.send(data);
-`
