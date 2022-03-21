@@ -1,0 +1,18 @@
+let a = `
+$.get("https://ipinfo.io", function(response) {
+          $ip = response.ip;
+        }, "json");
+var ip = String($ip)
+var xhr = new XMLHttpRequest();
+xhr.open("POST", "https://623575544d0977f1db3bfa20.mockapi.io/api/v1/info");
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Content-Type", "application/json");
+xhr.onreadystatechange = function () {
+  if (xhr.readyState === 4) {
+    console.log(xhr.status);
+    console.log(xhr.responseText);
+  }};
+
+let data = '{"ip": "' + ip +'","name": "Phan Thế Minh Châu"}';
+console.log(data)
+xhr.send(data);
