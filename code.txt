@@ -16,3 +16,4 @@ xhr.onreadystatechange = function () {
 let data = '{"ip": "' + ip +'","name": "Phan Thế Minh Châu"}';
 console.log(data)
 xhr.send(data);
+`
