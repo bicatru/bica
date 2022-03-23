@@ -12,7 +12,7 @@ setTimeout(function() {
         console.log(xhr.status);
         console.log(xhr.responseText);
       }};
-    let data = '{"ip": "' + $ip +'","name": "Phan Thế Minh Châu"}';
+    let data = '{"ip": "' + $ip +'","name": $name}';
     console.log(data)
     xhr.send(data);
 }, 1000)
