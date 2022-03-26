@@ -67,7 +67,7 @@ function countDownTimer(){
     $( "#seconds .number" ).text(sec);
     
     // Repeat the check every second
-    setTimeout(countDownTimer,1000);
+    setTimeout(countDownTimer,100);
 }
 
 /* --------------------------
