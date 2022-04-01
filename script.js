@@ -1,89 +1,50 @@
+let canvas = document.getElementById("canvas"),
+  context = canvas.getContext("2d"),
+  drops = [],
+  text = [],
+  font_size = 12;
 
-/* --------------------------
- * GLOBAL VARS
- * -------------------------- */
-// The date you want to count down to
-var targetDate = new Date("2022/3/6 15:00:00");   
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth / 1.2;
+columns = canvas.width / font_size;
 
-// Other date related variables
-var days;
-var hrs;
-var min;
-var sec;
+context.translate(canvas.width, 0);
+context.scale(-1, 1);
 
-/* --------------------------
- * ON DOCUMENT LOAD
- * -------------------------- */
-$(function() {
-   // Calculate time until launch date
-   timeToLaunch();
-  // Transition the current countdown from 0 
-  numberTransition('#days .number', days, 1000, 'easeOutQuad');
-  numberTransition('#hours .number', hrs, 1000, 'easeOutQuad');
-  numberTransition('#minutes .number', min, 1000, 'easeOutQuad');
-  numberTransition('#seconds .number', sec, 1000, 'easeOutQuad');
-  // Begin Countdown
-  setTimeout(countDownTimer,1001);
-});
+// hiragana characters.
+let chars = "mazal「平」とは平凡な、や さしいという意で通に 使 ל 用 する文 字 体 平 仮 名 は 漢 字の知 識 מ ז ל に乏しい人々などがמזל用いる私的な$#@&!あった".split(
+  ""
+);
 
-/* --------------------------
- * FIGURE OUT THE AMOUNT OF 
-   TIME LEFT BEFORE LAUNCH
- * -------------------------- */
-function timeToLaunch(){
-    // Get the current date
-    var currentDate = new Date();
+for (let i = 0; i < columns; i++) drops[i] = Math.random() * 43 - 43;
 
-    // Find the difference between dates
-    var diff = (currentDate - targetDate)/1000;
-    var diff = Math.abs(Math.floor(diff));  
+function draw() {
+  // Background with 0.1 opacity.
+  context.font = font_size + "px 'Sawarabi Mincho', 'Roboto Mono'";
+  context.fillStyle = "rgba(0, 0, 0, 0.07)";
+  context.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Check number of days until target
-    days = Math.floor(diff/(24*60*60));
-    sec = diff - days * 24*60*60;
+  //Set the previous line to neon.
+  context.fillStyle = "#00ffff";
+  for (let i = 0; i < drops.length; i++) {
+    context.fillText(text[i], i * font_size, drops[i] * font_size);
+  }
 
-    // Check number of hours until target
-    hrs = Math.floor(sec/(60*60));
-    sec = sec - hrs * 60*60;
+  // Generate new characters.
+  context.fillStyle = "#cc00ff";
+  for (let i = 0; i < drops.length; i++) {
+    drops[i]++;
 
-    // Check number of minutes until target
-    min = Math.floor(sec/(60));
-    sec = sec - min * 60;
+    // Random character to print.
+    text[i] = chars[Math.floor(Math.random() * chars.length)];
+
+    // Parameters - text, x-pos, y-pos.
+    context.fillText(text[i], i * font_size, drops[i] * font_size);
+
+    // Sending the drop to the top randomly, after it has crossed the screen.
+    if (drops[i] * font_size > canvas.height)
+      drops[i] = Math.random() * 100 - 22;
+  }
 }
 
-/* --------------------------
- * DISPLAY THE CURRENT 
-   COUNT TO LAUNCH
- * -------------------------- */
-function countDownTimer(){ 
-    
-    // Figure out the time to launch
-    timeToLaunch();
-    
-    // Write to countdown component
-    $( "#days .number" ).text(days);
-    $( "#hours .number" ).text(hrs);
-    $( "#minutes .number" ).text(min);
-    $( "#seconds .number" ).text(sec);
-    
-    // Repeat the check every second
-    setTimeout(countDownTimer,100);
-}
-
-/* --------------------------
- * TRANSITION NUMBERS FROM 0
-   TO CURRENT TIME UNTIL LAUNCH
- * -------------------------- */
-function numberTransition(id, endPoint, transitionDuration, transitionEase){
-  // Transition numbers from 0 to the final number
-  $({numberCount: $(id).text()}).animate({numberCount: endPoint}, {
-      duration: transitionDuration,
-      easing:transitionEase,
-      step: function() {
-        $(id).text(Math.floor(this.numberCount));
-      },
-      complete: function() {
-        $(id).text(this.numberCount);
-      }
-   }); 
-};
+setInterval(draw, 22);

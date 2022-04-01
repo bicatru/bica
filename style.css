@@ -1,43 +1,20 @@
-html {
-  box-sizing: border-box;
-}
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&family=Sawarabi+Mincho&display=swap");
 
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-
-html,
-body {
-  background-image: url(./bgr.gif);
-  height: 99%;
-}
-
-ul#countdown {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 50%;
-  margin: 0 auto;
-  padding: 15px 0 20px 0;
-  color: #ffffff12;
-  border: 1px solid #adafb2;
-  border-width: 1px 0;
-  overflow: hidden;
-  font-family: "Arial Narrow", Arial, sans-serif;
-  font-weight: bold;
-}
-ul#countdown li {
-  margin: 0 -3px 0 0;
+* {
+  margin: 0;
   padding: 0;
-  display: inline-block;
-  width: 25%;
-  font-size: 72px;
-  font-size: 6vw;
-  text-align: center;
+  box-sizing: border-box;
+  background: #000;
+  /*font-family: "Josefin Sans", sans-serif;*/
+  font-family: "Sawarabi Mincho", sans-serif;
+  font-size: 2vmax;
 }
-ul#countdown li .label {
-  color: #adafb2;
-  font-size: 18px;
-  font-size: 1.5vw;
-  text-transform: uppercase;
+body {
+  display: inline-block;
+  transform: scale(1.4, 1);
+  -webkit-transform: scale(1.4, 1);
+  -moz-transform: scale(1.4, 1);
+  -ms-transform: scale(1.4, 1);
+  -o-transform: scale(1.4, 1);
+  overflow: hidden;
 }
