@@ -1,0 +1,49 @@
+<!DOCTYPE HTML> 
+<html> 
+  
+<head> 
+    <title> 
+        How to create an image element
+        dynamically using JavaScript ?
+    </title>     
+</head> 
+  
+<body id = "body" style = "text-align:center;"> 
+      
+    <input id="link"></input>
+	<input id="num"></input>
+	<input id="type"></input>
+	<button onclick="send()">gửi</button>
+	<div id="item"></div>
+	
+	
+	 <script type="text/javascript">
+	  //https://i3.wp.com/kul.mrcong.com/images/2022/04/18/DJAWA-Photo-Echi-Maid-Mansion-N3-MrCong.com-001.webp
+		function send() {
+			let num = document.getElementById("num").value;
+			let link = document.getElementById("link").value;
+			let type = document.getElementById("type").value;
+			for (let i = 1; i < parseInt(num); i++) {
+			  if (i < 10) {
+				  insert1(i, link, type)
+				} else {
+				  insert2(i, link, type)
+				}
+			}
+		};
+        function insert1(i, link, type){
+            var src = document.getElementById("item");
+            var img = document.createElement("img");
+            img.src = link+"0"+i+type;
+            src.appendChild(img);
+        };
+		function insert2(i, link, type){
+            var src = document.getElementById("item");
+            var img = document.createElement("img");
+            img.src = link+i+type;
+            src.appendChild(img);
+        };
+     </script>
+</body> 
+  
+</html>
